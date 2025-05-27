@@ -4,6 +4,13 @@
 - database using MySql
 - adminlte (bootstrap)
 
+## .env 
+Add this to .env
+```
+DIGIFLAZZ_USERNAME=
+DIGIFLAZZ_KEY=
+DIGIFLAZZ_WEBHOOK_SECRET=
+```
 ## Initial
 After cloning repositories, Please do:
 ```
