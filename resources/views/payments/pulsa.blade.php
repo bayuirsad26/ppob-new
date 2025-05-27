@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <x-adminlte-input name="iPhone" label="Phone Number" placeholder="Input a phone number..."
-                                label-class="text-lightblue" type="number" igroup-size="md">
+                                label-class="text-lightblue" type="number" igroup-size="md" required>
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
                                         <i class="fas fa-mobile-alt text-lightblue"></i>
@@ -36,7 +36,41 @@
                                 </x-slot>
                             </x-adminlte-input>
                         </div>
-                        <div class="form-group">
+                        @php
+                            $brands = $products->pluck('brand')->unique();
+                        @endphp
+
+                        <!-- Provider -->
+                        <x-adminlte-select2 id="sProvider" name="sProvider" label="Provider" label-class="text-lightblue"
+                            igroup-size="md" data-placeholder="Select an option..." required>
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text">
+                                    <i class="fas fa-sim-card text-lightblue"></i>
+                                </div>
+                            </x-slot>
+                            <option />
+                            @foreach ($brands as $brand)
+                                <option value="{{ $brand }}">{{ $brand }}</option>
+                            @endforeach
+                        </x-adminlte-select2>
+
+                        <!-- Nominal -->
+                        <x-adminlte-select2 id="sSku" name="sSku" label="Total" label-class="text-lightblue"
+                            igroup-size="md" data-placeholder="Select nominal..." required>
+                            <x-slot name="prependSlot">
+                                <div class="input-group-text">
+                                    <i class="fas fa-money-bill text-lightblue"></i>
+                                </div>
+                            </x-slot>
+                            <option />
+                        </x-adminlte-select2>
+
+                        <input type="hidden" name="price" id="priceInput">
+
+
+
+
+                        {{-- <div class="form-group">
                             <x-adminlte-select2 name="sProvider" label="Provider" label-class="text-lightblue"
                                 igroup-size="md" data-placeholder="Select an option...">
                                 <x-slot name="prependSlot">
@@ -54,9 +88,9 @@
                                 <option value="ceria">Ceria</option>
                                 <option value="im3">IM3</option>
                             </x-adminlte-select2>
-                        </div>
-                        <div class="form-group">
-                            <x-adminlte-select2 name="sAmount" label="Total" label-class="text-lightblue"
+                        </div> --}}
+                        {{-- <div class="form-group">
+                            <x-adminlte-select2 name="sSku" label="Total" label-class="text-lightblue"
                                 igroup-size="md" data-placeholder="Select an option...">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
@@ -72,7 +106,7 @@
                                 <option value="50000">50.000</option>
                                 <option value="100000">100.000</option>
                             </x-adminlte-select2>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="card-footer">
@@ -91,8 +125,8 @@
                     <br>
                     <i class="text-dark">Please contact Admin!</i>
                     <br> <br>
-                    Email: 
-                    <a href="mailto:admin@admin.com">admin@admin.com</a> 
+                    Email:
+                    <a href="mailto:admin@admin.com">admin@admin.com</a>
                 </x-adminlte-callout>
             @endif
 
@@ -102,8 +136,8 @@
                     <br>
                     <i class="text-dark">Please contact Admin!</i>
                     <br> <br>
-                    Email: 
-                    <a href="mailto:admin@admin.com">admin@admin.com</a> 
+                    Email:
+                    <a href="mailto:admin@admin.com">admin@admin.com</a>
                 </x-adminlte-callout>
             @endif
         </div>
@@ -116,4 +150,37 @@
 @stop
 
 @section('js')
+<script>
+    $(document).ready(function () {
+        const allProducts = @json($products);
+        const priceInput = document.getElementById('priceInput');
+
+        $('#sProvider').on('change', function () {
+            const selectedBrand = $(this).val();
+
+            const filtered = allProducts.filter(p => p.brand === selectedBrand);
+
+            const $amountSelect = $('#sSku');
+            $amountSelect.empty().append('<option></option>');
+
+            filtered.forEach(p => {
+                $amountSelect.append(
+                    $('<option>', {
+                        value: p.sku,
+                        text: `${p.name} - Rp${new Intl.NumberFormat().format(p.price)}`
+                    })
+                );
+            });
+
+            $amountSelect.trigger('change.select2'); // penting untuk Select2 refresh
+        });
+        $('#sSku').on('change', function () {
+            const filtered = allProducts.filter(p => p.sku === $(this).val());
+            const price = filtered[0].price;
+
+            $('#priceInput').val(price || '');
+        });
+    });
+</script>
+
 @stop

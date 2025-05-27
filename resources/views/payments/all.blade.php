@@ -42,7 +42,7 @@
                         'order' => [[0, 'desc']],
                     ];
                 @endphp
-    
+
                 <x-adminlte-datatable id="table1" :heads="$heads" :config="$config" striped hoverable>
                     @foreach ($items as $item)
                         <tr>
@@ -52,7 +52,7 @@
                             <td>{{number_format($item->bill_amount,2,",",".")}}</td>
                             <td>{{number_format($item->fee_amount,2,",",".")}}</td>
                             <td>{{number_format($item->total_amount,2,",",".")}}</td>
-                            <td>{{$item->state}}</td>
+                            <td>{{$item->status}}</td>
                         </tr>
                     @endforeach
                 </x-adminlte-datatable>
@@ -60,7 +60,7 @@
 
         </div>
 
-       
+
     </div>
 @stop
 

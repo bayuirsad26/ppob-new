@@ -3,6 +3,6 @@ namespace App\Enums;
 
 enum TransactionStateEnum: string{
     case PENDING = "PENDING";
-    case PROGRESS = "PROGRESS";
+    case FAILED = "FAILED";
     case COMPLETED = "COMPLETED";
 }

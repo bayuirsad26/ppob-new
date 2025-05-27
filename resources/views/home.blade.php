@@ -23,10 +23,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-12 col-12">
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>0</h3>
+                        <h3>Rp {{ number_format($transactions,2,",",".") }}</h3>
                         <p>Total Transaction</p>
                     </div>
                     <div class="icon">
@@ -36,12 +36,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-6 col-12" style="display: none">
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ number_format(Auth::user()->wallet->balance, 2, ",", )  }}</h3>
                         <p>Balance</p>
-                    </div>  
+                    </div>
                     <div class="icon">
                         <i class="fas fa-wallet"></i>
                     </div>
@@ -58,48 +58,48 @@
             <div class="card-body">
                 <p>Top Up and Data Package</p>
                 <a href="{{route('pulsa')}}" class="btn btn-app bg-info">
-                    <i class="fas fa-mobile-alt"></i> 
+                    <i class="fas fa-mobile-alt"></i>
                     Pulsa
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-info">
-                    <i class="fas fa-sim-card"></i> 
+                    <i class="fas fa-sim-card"></i>
                     Data Package
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-info">
-                    <i class="far fa-credit-card"></i> 
+                    <i class="far fa-credit-card"></i>
                     E-Money
                 </a>
                 <p>Payment and Bills</p>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-plug"></i> 
+                    <i class="fas fa-plug"></i>
                     PLN
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-burn"></i> 
+                    <i class="fas fa-burn"></i>
                     PDAM
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-satellite-dish"></i> 
+                    <i class="fas fa-satellite-dish"></i>
                     Internet
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-medkit"></i> 
+                    <i class="fas fa-medkit"></i>
                     BPJS
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-fire-alt"></i> 
+                    <i class="fas fa-fire-alt"></i>
                     PGN Gas
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-book"></i> 
+                    <i class="fas fa-book"></i>
                     Multifinance
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-heartbeat"></i> 
+                    <i class="fas fa-heartbeat"></i>
                     Insurance
                 </a>
                 <a href="{{route('coming')}}" class="btn btn-app bg-success">
-                    <i class="fas fa-graduation-cap"></i> 
+                    <i class="fas fa-graduation-cap"></i>
                     Education
                 </a>
             </div>

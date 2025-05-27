@@ -325,7 +325,7 @@ return [
         ['header' => 'TRANSACTION'],
         [
             'text' => 'Top Up Balance',
-            'url' => '/topup',
+            'url' => '/coming',
             'icon' => 'fas fa-wallet',
         ],
         [

@@ -26,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userId = Auth::user()->id;
+        $transactions = Transaction::where('user_id', $userId)->where('status', 'COMPLETED')->sum('total_amount');
+        return view('home', compact('transactions'));
     }
 
     public function coming()

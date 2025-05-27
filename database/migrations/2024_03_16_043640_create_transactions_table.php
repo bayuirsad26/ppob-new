@@ -22,9 +22,9 @@ return new class extends Migration
             $table->float('bill_amount')->nullable();
             $table->float('fee_amount')->nullable();
             $table->float('total_amount')->nullable();
-            $table->enum('state', [
+            $table->enum('status', [
                 TransactionStateEnum::PENDING->value,
-                TransactionStateEnum::PROGRESS->value,
+                TransactionStateEnum::FAILED->value,
                 TransactionStateEnum::COMPLETED->value,
             ]);
             $table->timestamps();
