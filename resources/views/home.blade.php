@@ -23,7 +23,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12 col-12">
+            <div class="col-lg-6 col-12">
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>Rp {{ number_format($transactions,2,",",".") }}</h3>
@@ -36,16 +36,16 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 col-12" style="display: none">
+            <div class="col-lg-6 col-12">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>{{ number_format(Auth::user()->wallet->balance, 2, ",", )  }}</h3>
+                        <h3>Rp {{ number_format(Auth::user()->wallet->balance, 2, ",", "." )  }}</h3>
                         <p>Balance</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-wallet"></i>
                     </div>
-                    <a href="/topup" class="small-box-footer">Top Up <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/coming" class="small-box-footer">Top Up <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>

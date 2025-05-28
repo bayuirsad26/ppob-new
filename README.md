@@ -3,7 +3,7 @@
 - laravel version 11
 - database using MySql
 - adminlte (bootstrap)
-
+- SMTP
 ## .env 
 Add this to .env
 ```
