@@ -19,9 +19,9 @@ RUN npm i && npm run build
 # Production stage
 FROM php:8.2-fpm-alpine AS production
 
-# Install system dependencies
+# Install system dependencies with MySQL support
 RUN apk add --no-cache \
-    libpq-dev \
+    mysql-dev \
     libpng-dev \
     libjpeg-turbo-dev \
     libwebp-dev \
@@ -34,9 +34,9 @@ RUN apk add --no-cache \
     oniguruma-dev \
     supervisor
 
-# Install PHP extensions
+# Install PHP extensions with MySQL support
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
-    docker-php-ext-install pdo pdo_pgsql pgsql gd zip bcmath opcache mbstring exif pcntl
+    docker-php-ext-install pdo pdo_mysql mysqli gd zip bcmath opcache mbstring exif pcntl
 
 # Configure opcache
 COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
